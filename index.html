@@ -82,8 +82,8 @@
             <div class="hero-cta">
                 <a href="#products" class="btn-primary">Découvrir nos Solutions</a>
                 <div class="social-links">
-                    <a href="https://t.me/YourTelegramChannel" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://youtube.com/YourChannel" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://t.me/+QEqmFwQge6cxMzM0" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://www.youtube.com/@EssombaBotLiquidityforAll" target="_blank"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -393,22 +393,85 @@
     <!-- Contact -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Contactez-nous</h2>
+            <h2>Support & Contact</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Support & Questions</h3>
-                    <p>Notre équipe est disponible pour vous accompagner dans votre réussite.</p>
+                    <h3>Besoin d'aide ?</h3>
+                    <p>Remplissez le formulaire ci-dessous pour nous contacter. Notre équipe vous répondra dans les plus brefs délais.</p>
                     <div class="contact-links">
-                        <a href="https://t.me/YourSupportChannel" target="_blank">
+                        <a href="https://t.me/+QEqmFwQge6cxMzM0" target="_blank">
                             <i class="fab fa-telegram"></i> Support Telegram
                         </a>
-                        <a href="https://youtube.com/YourChannel" target="_blank">
+                        <a href="https://www.youtube.com/@EssombaBotLiquidityforAll" target="_blank">
                             <i class="fab fa-youtube"></i> Chaîne YouTube
                         </a>
-                        <a href="mailto:support@emzl-trading.com">
-                            <i class="fas fa-envelope"></i> Email Support
+                        <a href="mailto:russelsessomba@gmail.com">
+                            <i class="fas fa-envelope"></i> russelsessomba@gmail.com
                         </a>
                     </div>
+                </div>
+                <div class="contact-form">
+                    <form name="support-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+                        <input type="hidden" name="form-name" value="support-contact" />
+                        <p style="display: none;">
+                            <label>Ne pas remplir si vous êtes humain: <input name="bot-field" /></label>
+                        </p>
+                        
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product">Produit concerné *</label>
+                            <select id="product" name="product" required>
+                                <option value="">Sélectionnez un produit</option>
+                                <option value="IFVG Smart Robot EMZL">IFVG Smart Robot EMZL</option>
+                                <option value="Essomba Money Cash Bot">Essomba Money Cash Bot</option>
+                                <option value="Sandwich Secure Bot">Sandwich Secure Bot</option>
+                                <option value="Essomba Pivot">Indicateur Essomba Pivot</option>
+                                <option value="IFVG Indicator">Indicateur IFVG</option>
+                                <option value="Market Energy">Indicateur Market Energy</option>
+                                <option value="Suite Complete">Suite Complète d'Indicateurs</option>
+                                <option value="Question Generale">Question Générale</option>
+                                <option value="Probleme Technique">Problème Technique</option>
+                                <option value="Demande Remboursement">Demande de Remboursement</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Sujet *</label>
+                            <input type="text" id="subject" name="subject" placeholder="Résumé de votre demande" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Décrivez votre problème ou question *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Décrivez en détail votre problème, question ou demande d'accompagnement..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="priority">Priorité</label>
+                            <select id="priority" name="priority">
+                                <option value="normale">Normale</option>
+                                <option value="urgente">Urgente</option>
+                                <option value="critique">Critique</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Envoyer le message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

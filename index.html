@@ -3,407 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMZL Trading Solutions - Bots & Indicateurs Premium</title>
-    <!-- Force deploy: 2024 -->
-    <style>
-        .promo-banner {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .countdown {
-            font-size: 1.2em;
-            margin: 5px 0;
-        }
-        .spots-left {
-            background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 5px;
-        }
-        body {
-            padding-top: 120px;
-        }
-    </style>
-    <!-- Updated: Force Netlify redeploy - 2024-12-19 -->
+    <title>Russels Trading - Bot Telegram + Copy Trading Automatique</title>
+    <meta name="description" content="Système complet de trading automatique avec Bot Telegram, Copy Trading universel et EA MT5. Essai gratuit 48h.">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Bannière Promo -->
-    <div class="promo-banner">
-        <div>🔥 OFFRE LIMITÉE - RÉDUCTION 70% 🔥</div>
-        <div class="countdown">⏰ Se termine dans : <span id="countdown">23:59:59</span></div>
-        <div class="spots-left">⚡ Plus que <span id="spots">7</span> places disponibles sur 10 !</div>
-    </div>
-    <!-- Header -->
     <header class="header">
         <nav class="nav">
             <div class="nav-brand">
-                <h1>EMZL <span>Trading Solutions</span></h1>
+                <h1>Russels <span>Trading</span></h1>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home">Accueil</a></li>
-                <li><a href="#products">Produits</a></li>
-                <li><a href="#about">À Propos</a></li>
+                <li><a href="#system">Le Système</a></li>
+                <li><a href="#features">Fonctionnalités</a></li>
+                <li><a href="#pricing">Tarifs</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Solutions de Trading Automatisé <span class="highlight">Nouvelle Génération</span></h1>
-            <p>Développées par ESSOMBA Steve Russels, expert trader avec plus de 5 ans d'expérience et spécialiste en intelligence artificielle appliquée à la finance.</p>
+            <h1>Système de Trading Automatique <span class="highlight">Professionnel</span></h1>
+            <p>Bot Telegram + Copy Trading Universel + EA MT5 - Solution complète pour automatiser votre trading 24/7</p>
+            
             <div class="hero-stats">
                 <div class="stat">
-                    <h3>5+</h3>
-                    <p>Années d'expérience</p>
+                    <h3>48h</h3>
+                    <p>Essai gratuit</p>
                 </div>
                 <div class="stat">
-                    <h3>1000+</h3>
-                    <p>Traders satisfaits</p>
+                    <h3>24/7</h3>
+                    <p>Trading automatique</p>
                 </div>
                 <div class="stat">
-                    <h3>95%</h3>
-                    <p>Taux de réussite</p>
+                    <h3>100%</h3>
+                    <p>Brokers supportés</p>
                 </div>
             </div>
-            <div class="hero-cta">
-                <a href="#products" class="btn-primary">Découvrir nos Solutions</a>
-                <div class="social-links">
-                    <a href="https://t.me/+QEqmFwQge6cxMzM0" target="_blank"><i class="fab fa-telegram"></i></a>
-                    <a href="https://www.youtube.com/@EssombaBotLiquidityforAll" target="_blank"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>À Propos de ESSOMBA Steve Russels</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Fort de plus de 5 années d'expérience en tant que trader professionnel, j'ai développé une expertise unique combinant :</p>
-                    <ul>
-                        <li>✅ Trading professionnel sur les marchés financiers</li>
-                        <li>✅ Solides compétences en programmation MQL5/Python</li>
-                        <li>✅ Expérience en fonds d'investissement</li>
-                        <li>✅ Développement de solutions d'IA appliquée à la finance</li>
-                    </ul>
-                    <p>Aujourd'hui, je me consacre au développement de solutions d'intelligence artificielle révolutionnaires pour optimiser vos performances de trading.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products">
-        <div class="container">
-            <h2>Nos Solutions Premium</h2>
             
-            <!-- Robots de Trading -->
-            <div class="product-category">
-                <h3><i class="fas fa-robot"></i> Robots de Trading Automatisé</h3>
-                
-                <!-- IFVG Smart Robot EMZL -->
-                <div class="product-card premium">
-                    <div class="product-header">
-                        <h4>IFVG Smart Robot EMZL</h4>
-                        <span class="badge">PREMIUM</span>
-                    </div>
-                    <div class="product-content">
-                        <p>Robot de trading automatisé utilisant la stratégie IFVG (Inversion Fair Value Gaps) avec IA intégrée et gestion avancée du risque.</p>
-                        <ul class="features">
-                            <li>✅ Stratégie IFVG avec IA</li>
-                            <li>✅ Gestion automatique du risque</li>
-                            <li>✅ Notifications Telegram</li>
-                            <li>✅ Backtesting intégré</li>
-                            <li>✅ Multi-timeframes</li>
-                            <li>✅ Protection des capitaux</li>
-                        </ul>
-                        <div class="pricing">
-                            <div class="price-option">
-                                <span class="duration">Mensuel (30 jours)</span>
-                                <span class="price">100$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option popular">
-                                <span class="duration">Trimestriel (90 jours)</span>
-                                <span class="price">270$</span>
-                                <span class="savings">Économisez 30$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option">
-                                <span class="duration">Annuel (365 jours)</span>
-                                <span class="price">1000$</span>
-                                <span class="savings">Économisez 200$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option">
-                                <span class="duration">Code Source</span>
-                                <span class="price">🔥 -70% avec code xrhdl6i</span>
-                                <a href="https://essombabot.gumroad.com/l/dqxcrl/xrhdl6i" class="btn-buy" target="_blank">Obtenir le Code</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Essomba Money Cash Bot -->
-                <div class="product-card premium">
-                    <div class="product-header">
-                        <h4>Essomba Money Cash Bot</h4>
-                        <span class="badge">NOUVEAU</span>
-                    </div>
-                    <div class="product-content">
-                        <p>Bot de trading crypto avancé avec stratégies d'arbitrage et de scalping automatisées. Génère des profits constants sur les marchés crypto.</p>
-                        <ul class="features">
-                            <li>✅ Stratégies d'arbitrage automatiques</li>
-                            <li>✅ Scalping haute fréquence</li>
-                            <li>✅ Support multi-exchanges</li>
-                            <li>✅ Notifications Telegram intégrées</li>
-                            <li>✅ Monitoring temps réel</li>
-                            <li>✅ Configuration sécurisée</li>
-                            <li>✅ Analytics détaillés</li>
-                        </ul>
-                        <div class="pricing">
-                            <div class="price-option popular">
-                                <span class="duration">Abonnement Mensuel</span>
-                                <span class="price">30$</span>
-                                <a href="https://t.me/+QEqmFwQge6cxMzM0" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option">
-                                <span class="duration">Code Source</span>
-                                <span class="price">300$ <span style="text-decoration: line-through; color: #999;">1000$</span></span>
-                                <span class="savings">🔥 Économisez 70% avec code xrhdl6i</span>
-                                <a href="https://essombabot.gumroad.com/l/iksdc/xrhdl6i" class="btn-buy" target="_blank">Obtenir le Code</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sandwich Secure Bot -->
-                <div class="product-card premium">
-                    <div class="product-header">
-                        <h4>Sandwich Secure Bot</h4>
-                        <span class="badge pro">ULTRA PRO</span>
-                    </div>
-                    <div class="product-content">
-                        <p>Bot de trading sophistiqué pour Arbitrum avec IA, stratégies sandwich, arbitrage MonContrat et protection militaire. Le plus avancé de notre gamme.</p>
-                        <ul class="features">
-                            <li>✅ IA prédictive intégrée</li>
-                            <li>✅ Stratégies sandwich optimisées</li>
-                            <li>✅ Arbitrage via MonContrat</li>
-                            <li>✅ Flashloans automatiques</li>
-                            <li>✅ Sécurité AES-256-GCM</li>
-                            <li>✅ Protection anti-pertes avancée</li>
-                            <li>✅ Récupération automatique</li>
-                            <li>✅ Monitoring temps réel</li>
-                            <li>✅ MEV extraction sécurisée</li>
-                        </ul>
-                        <div class="pricing">
-                            <div class="price-option popular">
-                                <span class="duration">Code Source Complet</span>
-                                <span class="price">750$ <span style="text-decoration: line-through; color: #999;">2500$</span></span>
-                                <span class="savings">🔥 Économisez 70% avec code xrhdl6i</span>
-                                <a href="https://essombabot.gumroad.com/l/pqkjw/xrhdl6i" class="btn-buy" target="_blank">Obtenir le Code</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- Essomba Pivot -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <h4>📊 Essomba Pivot</h4>
-                        <span class="badge pro">PRO</span>
-                    </div>
-                    <div class="product-content">
-                        <p>Niveaux de pivot avancés avec ratios Fibonacci optimisés pour identifier les vrais supports et résistances.</p>
-                        <ul class="features">
-                            <li>✅ Algorithme Essomba Pivot exclusif</li>
-                            <li>✅ 7 niveaux de pivot précis</li>
-                            <li>✅ Ratios Fibonacci optimisés</li>
-                            <li>✅ Adaptation automatique ATR</li>
-                        </ul>
-                        <div class="pricing">
-                            <div class="price-option">
-                                <span class="duration">Mensuel (30 jours)</span>
-                                <span class="price">50$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option popular">
-                                <span class="duration">Trimestriel (90 jours)</span>
-                                <span class="price">120$</span>
-                                <span class="savings">Économisez 30$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option">
-                                <span class="duration">Annuel (365 jours)</span>
-                                <span class="price">480$</span>
-                                <span class="savings">Économisez 120$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Inversion Fair Value Gaps (IFVG) -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <h4>🔵 Inversion Fair Value Gaps (IFVG)</h4>
-                        <span class="badge premium">PREMIUM</span>
-                    </div>
-                    <div class="product-content">
-                        <p>Détection des Fair Value Gaps avec signaux d'inversion précis pour capturer les retournements de marché.</p>
-                        <ul class="features">
-                            <li>✅ Détection automatique des FVG</li>
-                            <li>✅ Signaux d'inversion précis</li>
-                            <li>✅ Validation ATR intégrée</li>
-                            <li>✅ Rectangles visuels colorés</li>
-                        </ul>
-                        <div class="pricing">
-                            <div class="price-option">
-                                <span class="duration">Mensuel (30 jours)</span>
-                                <span class="price">50$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option popular">
-                                <span class="duration">Trimestriel (90 jours)</span>
-                                <span class="price">120$</span>
-                                <span class="savings">Économisez 30$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option">
-                                <span class="duration">Annuel (365 jours)</span>
-                                <span class="price">480$</span>
-                                <span class="savings">Économisez 120$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Market Energy EMZL -->
-                <div class="product-card">
-                    <div class="product-header">
-                        <h4>⚡️ Market Energy EMZL</h4>
-                        <span class="badge premium">PREMIUM</span>
-                    </div>
-                    <div class="product-content">
-                        <p>Analyse volumétrique avancée et forces du marché pour identifier qui contrôle vraiment le marché.</p>
-                        <ul class="features">
-                            <li>✅ Analyse volume et mèches</li>
-                            <li>✅ Histogramme forces marché</li>
-                            <li>✅ Logique contrarian intégrée</li>
-                            <li>✅ Lissage sur 3 périodes</li>
-                        </ul>
-                        <div class="pricing">
-                            <div class="price-option">
-                                <span class="duration">Mensuel (30 jours)</span>
-                                <span class="price">50$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option popular">
-                                <span class="duration">Trimestriel (90 jours)</span>
-                                <span class="price">120$</span>
-                                <span class="savings">Économisez 30$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                            <div class="price-option">
-                                <span class="duration">Annuel (365 jours)</span>
-                                <span class="price">480$</span>
-                                <span class="savings">Économisez 120$</span>
-                                <a href="https://t.me/PremiumEMZLbot" class="btn-buy" target="_blank">S'abonner</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero-cta">
+                <a href="https://t.me/PremiumEMZLbot" class="btn-primary">Démarrer l'essai gratuit</a>
+                <p class="cta-note">✅ Pas de carte bancaire requise</p>
             </div>
-
-            <!-- Indicateurs Techniques -->
-            <div class="product-category">
-                <h3><i class="fas fa-chart-line"></i> Indicateurs Techniques Premium</h3>
-                
-                <!-- Suite Complète -->
-                <div class="product-card premium">
-                    <div class="product-header">
-                        <h4>Suite Complète d'Indicateurs EMZL</h4>
-                        <span class="badge">PACK COMPLET</span>
-                    </div>
-                    <div class="product-content">
-                        <p>Collection complète de 8 indicateurs techniques professionnels pour une analyse de marché approfondie.</p>
-                        <ul class="features">
-                            <li>✅ Inversion Fair Value Gaps (IFVG)</li>
-                            <li>✅ Essomba Pivot</li>
-                            <li>✅ Market Energy 2.0</li>
-                        </ul>
-                        <div class="pricing">
-                            <div class="price-option popular">
-                                <span class="duration">Pack Complet (3 Indicateurs)</span>
-                                <span class="price">900$ <span style="text-decoration: line-through; color: #999;">3000$</span></span>
-                                <span class="savings">🔥 Économisez 70% avec code xrhdl6i</span>
-                                <a href="https://essombabot.gumroad.com/l/enmci/xrhdl6i" class="btn-buy" target="_blank">Obtenir le Code Source</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
+    <section id="system" class="system">
         <div class="container">
-            <h2>Ce que disent nos clients</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial">
-                    <p>"Le robot IFVG a transformé ma façon de trader. Résultats exceptionnels !"</p>
-                    <span>- Marc D., Trader Professionnel</span>
+            <h2>Le Système Complet Russels Trading</h2>
+            <p class="section-intro">3 composants puissants qui travaillent ensemble pour automatiser votre trading</p>
+            
+            <div class="system-grid">
+                <div class="system-card">
+                    <div class="system-icon">🤖</div>
+                    <h3>Bot Telegram</h3>
+                    <p>Interface complète pour gérer vos abonnements, configurer vos comptes et recevoir des notifications en temps réel.</p>
+                    <ul class="system-features">
+                        <li>✅ Interface bilingue (FR/EN)</li>
+                        <li>✅ Essai gratuit 48h</li>
+                        <li>✅ Paiements intégrés</li>
+                        <li>✅ Notifications instantanées</li>
+                        <li>✅ Configuration simplifiée</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn-secondary">Accéder au Bot</a>
                 </div>
-                <div class="testimonial">
-                    <p>"Les indicateurs EMZL sont d'une précision remarquable. Je recommande vivement."</p>
-                    <span>- Sarah L., Analyste Financière</span>
+
+                <div class="system-card featured">
+                    <div class="system-icon">🔄</div>
+                    <h3>Copy Trading Universel</h3>
+                    <p>Copiez automatiquement les trades du compte master vers vos comptes clients. Support API et VPS.</p>
+                    <ul class="system-features">
+                        <li>✅ API REST (OANDA, FXCM, Saxo, IB)</li>
+                        <li>✅ VPS Multi-MT5 (tous brokers)</li>
+                        <li>✅ 1 trade par symbole par client</li>
+                        <li>✅ Gestion automatique du risque</li>
+                        <li>✅ Notifications Telegram</li>
+                    </ul>
+                    <span class="badge-featured">Le Plus Populaire</span>
                 </div>
-                <div class="testimonial">
-                    <p>"Support technique au top et produits de qualité professionnelle."</p>
-                    <span>- Ahmed K., Trader Indépendant</span>
+
+                <div class="system-card">
+                    <div class="system-icon">📊</div>
+                    <h3>EA MT5 Premium</h3>
+                    <p>Expert Advisor avec stratégie IFVG, Pivots Essomba et Market Structure pour des entrées optimales.</p>
+                    <ul class="system-features">
+                        <li>✅ Stratégie IFVG avancée</li>
+                        <li>✅ Pivots Essomba exclusifs</li>
+                        <li>✅ Market Structure MTF</li>
+                        <li>✅ Protection 1 trade actif</li>
+                        <li>✅ Notifications Telegram</li>
+                    </ul>
+                    <a href="#pricing" class="btn-secondary">Voir les Plans</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Pourquoi Choisir Russels Trading ?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Sécurité Maximale</h3>
+                    <p>Chiffrement des mots de passe, protection anti-doublons, gestion sécurisée des données.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Support Universel</h3>
+                    <p>Compatible avec TOUS les brokers MT5 via VPS ou API REST (OANDA, FXCM, etc.).</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-bell"></i>
+                    <h3>Notifications Temps Réel</h3>
+                    <p>Recevez chaque trade, signal et événement directement sur Telegram.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Stratégies Avancées</h3>
+                    <p>IFVG, Pivots Essomba, Market Structure - Stratégies testées et optimisées.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-cog"></i>
+                    <h3>Configuration Simple</h3>
+                    <p>Commandes simples via Telegram : /set_api ou /set_vps et c'est parti !</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Trading 24/7</h3>
+                    <p>Le système fonctionne en continu, même quand vous dormez.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Plans & Tarifs</h2>
+            <p class="section-intro">Choisissez le plan adapté à vos besoins</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">
+                        <span class="amount">100$</span>
+                        <span class="period">/mois</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✅ Bot Telegram complet</li>
+                        <li>✅ Copy Trading actif</li>
+                        <li>✅ EA MT5 inclus</li>
+                        <li>✅ Max 1 lot par trade</li>
+                        <li>✅ Notifications Telegram</li>
+                        <li>✅ Support email</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn-pricing">Commencer</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="badge-popular">Le Plus Populaire</div>
+                    <h3>Pro</h3>
+                    <div class="price">
+                        <span class="amount">200$</span>
+                        <span class="period">/mois</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✅ Tout du Basic</li>
+                        <li>✅ Max 5 lots par trade</li>
+                        <li>✅ Risk multiplier personnalisé</li>
+                        <li>✅ Support prioritaire</li>
+                        <li>✅ Analyses quotidiennes</li>
+                        <li>✅ Accès groupe VIP</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn-pricing">Commencer</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>VIP</h3>
+                    <div class="price">
+                        <span class="amount">500$</span>
+                        <span class="period">/mois</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✅ Tout du Pro</li>
+                        <li>✅ Lots illimités</li>
+                        <li>✅ Support 24/7</li>
+                        <li>✅ Signaux exclusifs</li>
+                        <li>✅ Configuration personnalisée</li>
+                        <li>✅ Accès anticipé nouvelles features</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn-pricing">Commencer</a>
+                </div>
+            </div>
+
+            <div class="trial-banner">
+                <h3>🎁 Essai Gratuit 48h</h3>
+                <p>Testez le système complet pendant 48 heures sans carte bancaire</p>
+                <a href="https://t.me/PremiumEMZLbot" class="btn-primary">Démarrer l'essai gratuit</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>Comment Ça Marche ?</h2>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Démarrer sur Telegram</h3>
+                    <p>Envoyez /start au bot Telegram et activez votre essai gratuit 48h</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Configurer Votre Compte</h3>
+                    <p>Utilisez /set_api pour API (gratuit) ou /set_vps pour MT5 (tous brokers)</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Laisser Travailler</h3>
+                    <p>Le système copie automatiquement les trades 24/7 avec notifications</p>
+                </div>
+            </div>
+
+            <div class="commands-box">
+                <h3>Commandes Rapides</h3>
+                <div class="command-examples">
+                    <div class="command">
+                        <code>/set_api OANDA votre_api_key votre_account_id</code>
+                        <span>Configuration API (GRATUIT - Pas de VPS)</span>
+                    </div>
+                    <div class="command">
+                        <code>/set_vps LOGIN PASSWORD SERVEUR "Broker"</code>
+                        <span>Configuration VPS (Tous brokers MT5)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact">
         <div class="container">
             <h2>Support & Contact</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Besoin d'aide ?</h3>
-                    <p>Remplissez le formulaire ci-dessous pour nous contacter. Notre équipe vous répondra dans les plus brefs délais.</p>
+                    <p>Notre équipe est disponible pour vous accompagner dans la configuration et l'utilisation du système.</p>
                     <div class="contact-links">
-                        <a href="https://t.me/+QEqmFwQge6cxMzM0" target="_blank">
-                            <i class="fab fa-telegram"></i> Support Telegram
+                        <a href="https://t.me/SteveRussels" target="_blank">
+                            <i class="fab fa-telegram"></i> Support Direct: @SteveRussels
                         </a>
-                        <a href="https://www.youtube.com/@EssombaBotLiquidityforAll" target="_blank">
-                            <i class="fab fa-youtube"></i> Chaîne YouTube
+                        <a href="https://t.me/+QEqmFwQge6cxMzM0" target="_blank">
+                            <i class="fab fa-telegram"></i> Groupe Communauté
                         </a>
                         <a href="mailto:russelsessomba@gmail.com">
                             <i class="fas fa-envelope"></i> russelsessomba@gmail.com
@@ -411,11 +274,8 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form name="support-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+                    <form name="support-contact" method="POST" data-netlify="true" action="/thank-you">
                         <input type="hidden" name="form-name" value="support-contact" />
-                        <p style="display: none;">
-                            <label>Ne pas remplir si vous êtes humain: <input name="bot-field" /></label>
-                        </p>
                         
                         <div class="form-group">
                             <label for="name">Nom complet *</label>
@@ -428,48 +288,25 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="phone">Téléphone</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="product">Produit concerné *</label>
-                            <select id="product" name="product" required>
-                                <option value="">Sélectionnez un produit</option>
-                                <option value="IFVG Smart Robot EMZL">IFVG Smart Robot EMZL</option>
-                                <option value="Essomba Money Cash Bot">Essomba Money Cash Bot</option>
-                                <option value="Sandwich Secure Bot">Sandwich Secure Bot</option>
-                                <option value="Essomba Pivot">Indicateur Essomba Pivot</option>
-                                <option value="IFVG Indicator">Indicateur IFVG</option>
-                                <option value="Market Energy">Indicateur Market Energy</option>
-                                <option value="Suite Complete">Suite Complète d'Indicateurs</option>
-                                <option value="Question Generale">Question Générale</option>
-                                <option value="Probleme Technique">Problème Technique</option>
-                                <option value="Demande Remboursement">Demande de Remboursement</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
                             <label for="subject">Sujet *</label>
-                            <input type="text" id="subject" name="subject" placeholder="Résumé de votre demande" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Décrivez votre problème ou question *</label>
-                            <textarea id="message" name="message" rows="6" placeholder="Décrivez en détail votre problème, question ou demande d'accompagnement..." required></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="priority">Priorité</label>
-                            <select id="priority" name="priority">
-                                <option value="normale">Normale</option>
-                                <option value="urgente">Urgente</option>
-                                <option value="critique">Critique</option>
+                            <select id="subject" name="subject" required>
+                                <option value="">Sélectionnez un sujet</option>
+                                <option value="Configuration Bot">Configuration Bot Telegram</option>
+                                <option value="Configuration Copy Trading">Configuration Copy Trading</option>
+                                <option value="Configuration EA">Configuration EA MT5</option>
+                                <option value="Question Technique">Question Technique</option>
+                                <option value="Abonnement">Question sur Abonnement</option>
+                                <option value="Autre">Autre</option>
                             </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         
                         <button type="submit" class="btn-submit">
-                            <i class="fas fa-paper-plane"></i> Envoyer le message
+                            <i class="fas fa-paper-plane"></i> Envoyer
                         </button>
                     </form>
                 </div>
@@ -477,14 +314,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 EMZL Trading Solutions - Développé par ESSOMBA Steve Russels</p>
+            <p>&copy; 2024 Russels Trading - Développé par ESSOMBA Steve Russels</p>
             <div class="footer-links">
-                <a href="#">Conditions d'utilisation</a>
-                <a href="#">Politique de confidentialité</a>
-                <a href="#">Support</a>
+                <a href="https://t.me/SteveRussels">Support</a>
+                <a href="https://t.me/+QEqmFwQge6cxMzM0">Communauté</a>
             </div>
         </div>
     </footer>

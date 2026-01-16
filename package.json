@@ -1,0 +1,26 @@
+{
+  "name": "emzl-seo-machine",
+  "version": "1.0.0",
+  "description": "Machine à clients automatique EMZL - 200+ pages SEO",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "node scripts/generate-all.js",
+    "generate-content": "node scripts/generate-seo-pages.js",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "generate-daily": "node scripts/generate-daily-content.js",
+    "start": "node server.js"
+  },
+  "keywords": ["forex", "mt5", "bot", "trading", "seo"],
+  "author": "ESSOMBA Steve Russels",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "sitemap": "^7.1.1",
+    "marked": "^11.0.0",
+    "fs-extra": "^11.2.0"
+  }
+}

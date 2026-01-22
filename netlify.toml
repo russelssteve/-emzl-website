@@ -1,0 +1,18 @@
+[build]
+  publish = "."
+  
+[build.environment]
+  NODE_VERSION = "18"
+
+# Configuration des formulaires
+[forms]
+  # Notification par email pour le formulaire de support
+  [forms.support-contact]
+    to = "russelsessomba@gmail.com"
+    subject = "Nouveau message de support - EMZL Trading"
+    template = "Nouveau message de support reçu:\n\nNom: {{ name }}\nEmail: {{ email }}\nTéléphone: {{ phone }}\nProduit: {{ product }}\nSujet: {{ subject }}\nPriorité: {{ priority }}\n\nMessage:\n{{ message }}"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

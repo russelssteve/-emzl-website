@@ -1,0 +1,60 @@
+name: Daily Content Generation
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Tous les jours à 2h UTC
+  workflow_dispatch:  # Permet déclenchement manuel
+
+jobs:
+  generate-content:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  # AJOUT: Permission d'écriture
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # MISE À JOUR: Version plus récente
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4  # MISE À JOUR: Version plus récente
+        with:
+          node-version: '18'
+          cache: 'npm'  # AJOUT: Cache npm pour vitesse
+          
+      - name: Install dependencies
+        run: |
+          npm ci  # CHANGEMENT: Plus rapide que npm install
+          
+      - name: Create required directories
+        run: |
+          mkdir -p public/blog
+          mkdir -p content
+          
+      - name: Generate daily content
+        run: |
+          npm run generate-daily || echo "Daily generation failed but continuing"
+          
+      - name: Generate sitemap
+        run: |
+          npm run generate-sitemap || echo "Sitemap generation failed but continuing"
+          
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "🤖 Daily content generated - $(date +'%Y-%m-%d %H:%M UTC')"
+          git push

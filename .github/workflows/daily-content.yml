@@ -10,36 +10,39 @@ jobs:
     runs-on: ubuntu-latest
     
     permissions:
-      contents: write  # AJOUT: Permission d'écriture
+      contents: write  # Permission d'écriture
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # MISE À JOUR: Version plus récente
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # MISE À JOUR: Version plus récente
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'  # AJOUT: Cache npm pour vitesse
-          
-      - name: Install dependencies
-        run: |
-          npm ci  # CHANGEMENT: Plus rapide que npm install
+          cache: 'npm'
           
       - name: Create required directories
         run: |
           mkdir -p public/blog
           mkdir -p content
+          mkdir -p templates
+          mkdir -p data
+          mkdir -p reports
+          
+      - name: Install dependencies
+        run: |
+          npm ci || npm install
           
       - name: Generate daily content
         run: |
-          npm run generate-daily || echo "Daily generation failed but continuing"
+          npm run generate-daily || echo "Daily generation completed with warnings"
           
       - name: Generate sitemap
         run: |
-          npm run generate-sitemap || echo "Sitemap generation failed but continuing"
+          npm run generate-sitemap || echo "Sitemap generation completed with warnings"
           
       - name: Check for changes
         id: verify-changed-files

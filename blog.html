@@ -5,26 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Trading - EMZL Trading Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .logo a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        /* Blog Header */
         .blog-header {
-            padding: 150px 0 80px;
+            padding: 150px 0 100px;
             background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23667eea" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .blog-header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .blog-header p {
+            font-size: 20px;
+            color: #a0aec0;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Blog Stats */
+        .blog-stats {
+            background: #0f1329;
+            padding: 60px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            transition: all 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #a0aec0;
+            font-weight: 500;
+        }
+        
+        /* Blog Content */
+        .blog-content {
+            padding: 100px 0;
+            background: #0a0e27;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #a0aec0;
+            font-size: 18px;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
             margin-top: 40px;
         }
         
         .blog-card {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
+            border-radius: 24px;
+            padding: 40px;
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
@@ -41,29 +202,38 @@
         }
         
         .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 80px rgba(102, 126, 234, 0.4);
+            border-color: rgba(102, 126, 234, 0.3);
         }
         
         .blog-meta {
             display: flex;
+            align-items: center;
             gap: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-size: 14px;
-            color: #a0aec0;
         }
         
         .blog-category {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
+            padding: 6px 16px;
+            border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .blog-date {
+            color: #a0aec0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .blog-card h3 {
-            font-size: 22px;
+            font-size: 24px;
             margin-bottom: 15px;
             font-weight: 700;
             line-height: 1.4;
@@ -81,8 +251,9 @@
         
         .blog-excerpt {
             color: #a0aec0;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 16px;
         }
         
         .read-more {
@@ -91,8 +262,9 @@
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             transition: all 0.3s;
+            font-size: 16px;
         }
         
         .read-more:hover {
@@ -100,16 +272,114 @@
             transform: translateX(5px);
         }
         
+        .read-more::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover::after {
+            transform: translateX(3px);
+        }
+        
+        /* No Articles State */
         .no-articles {
             text-align: center;
-            padding: 60px 20px;
-            color: #a0aec0;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            margin: 40px 0;
+        }
+        
+        .no-articles-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            opacity: 0.7;
         }
         
         .no-articles h3 {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 15px;
             color: #fff;
+            font-weight: 700;
+        }
+        
+        .no-articles p {
+            color: #a0aec0;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a0e27;
+            padding: 60px 0 40px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer p {
+            color: #a0aec0;
+            margin-bottom: 10px;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: #764ba2;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blog-header h1 {
+                font-size: 36px;
+            }
+            
+            .blog-header p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -118,11 +388,11 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo"><a href="/" style="color: inherit; text-decoration: none;">Russels Trading</a></div>
+                <div class="logo"><a href="/">Russels Trading</a></div>
                 <ul class="nav-links">
                     <li><a href="/#system">Système</a></li>
                     <li><a href="/#features">Avantages</a></li>
-                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/blog.html">Blog</a></li>
                     <li><a href="/#pricing">Tarifs</a></li>
                     <li><a href="/#contact">Contact</a></li>
                 </ul>
@@ -134,20 +404,48 @@
     <section class="blog-header">
         <div class="container">
             <h1>📊 Blog Trading</h1>
-            <p>Analyses quotidiennes, stratégies et insights du marché forex</p>
+            <p>Analyses quotidiennes, stratégies et insights du marché forex pour maximiser vos profits</p>
+        </div>
+    </section>
+
+    <!-- Blog Stats -->
+    <section class="blog-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="articles-count">365</div>
+                    <div class="stat-label">Articles par an</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Types de contenu</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Publication auto</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Gratuit</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Blog Content -->
-    <section class="features">
+    <section class="blog-content">
         <div class="container">
+            <h2 class="section-title">Derniers Articles</h2>
+            <p class="section-subtitle">Découvrez nos analyses quotidiennes et stratégies de trading pour améliorer vos performances</p>
+            
             <div id="blog-content">
                 <div class="no-articles">
-                    <h3>🚀 Contenu en cours de génération</h3>
+                    <div class="no-articles-icon">🚀</div>
+                    <h3>Contenu en cours de génération</h3>
                     <p>Nos articles quotidiens seront bientôt disponibles ici.<br>
                     Le système génère automatiquement du contenu chaque jour à 2h UTC.</p>
-                    <a href="https://t.me/PremiumEMZLbot" class="btn btn-primary" style="margin-top: 20px;">
-                        Rejoindre Telegram en attendant
+                    <a href="https://t.me/PremiumEMZLbot" class="btn btn-primary">
+                        🤖 Rejoindre Telegram en attendant
                     </a>
                 </div>
             </div>
@@ -158,11 +456,28 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 Russels Trading - Blog Trading Automatisé</p>
-            <p style="margin-top: 10px;">Support: <a href="https://t.me/SteveRussels" style="color: #667eea;">@SteveRussels</a></p>
+            <p>Support: <a href="https://t.me/SteveRussels">@SteveRussels</a> | Email: <a href="mailto:russelsessomba@gmail.com">russelsessomba@gmail.com</a></p>
         </div>
     </footer>
 
     <script>
+        // Animation des statistiques
+        function animateStats() {
+            const articlesCount = document.getElementById('articles-count');
+            let count = 0;
+            const target = 365;
+            const increment = target / 50;
+            
+            const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(timer);
+                }
+                articlesCount.textContent = Math.floor(count);
+            }, 30);
+        }
+        
         // Charger les articles du blog
         async function loadBlogArticles() {
             try {
@@ -191,16 +506,27 @@
                 articleCard.className = 'blog-card';
                 
                 const date = new Date(article.date).toLocaleDateString('fr-FR');
+                const categoryIcons = {
+                    'market-analysis': '📊',
+                    'strategy-deep-dive': '🎯',
+                    'user-case-study': '💰',
+                    'competitor-analysis': '⚔️',
+                    'performance-report': '📈',
+                    'educational': '🎓',
+                    'community-spotlight': '👥'
+                };
+                
+                const icon = categoryIcons[article.category] || '📊';
                 
                 articleCard.innerHTML = `
                     <div class="blog-meta">
-                        <span class="blog-category">${article.category}</span>
-                        <span>📅 ${date}</span>
+                        <span class="blog-category">${icon} ${article.category}</span>
+                        <span class="blog-date">📅 ${date}</span>
                     </div>
                     <h3><a href="${article.slug}.html">${article.title}</a></h3>
                     <p class="blog-excerpt">${article.excerpt}...</p>
                     <a href="${article.slug}.html" class="read-more">
-                        Lire la suite →
+                        Lire la suite
                     </a>
                 `;
                 
@@ -211,8 +537,11 @@
             blogContent.appendChild(blogGrid);
         }
 
-        // Charger les articles au chargement de la page
-        loadBlogArticles();
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            animateStats();
+            loadBlogArticles();
+        });
     </script>
 </body>
 </html>

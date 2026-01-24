@@ -1,270 +1,38 @@
 const fs = require('fs');
 const path = require('path');
-const { createCanvas, loadImage } = require('canvas');
 
 class SocialMediaPublisher {
   constructor() {
-    this.facebookPageId = process.env.FACEBOOK_PAGE_ID;
-    this.facebookAccessToken = process.env.FACEBOOK_ACCESS_TOKEN;
-    this.instagramBusinessId = process.env.INSTAGRAM_BUSINESS_ID;
-    
-    this.templates = {
-      'market-analysis': {
-        background: '#1a1f3a',
-        accent: '#667eea',
-        icon: '📊',
-        title: 'ANALYSE DE MARCHÉ'
-      },
-      'strategy-deep-dive': {
-        background: '#2d1b69',
-        accent: '#764ba2',
-        icon: '🎯',
-        title: 'STRATÉGIE TRADING'
-      },
-      'user-case-study': {
-        background: '#0f4c75',
-        accent: '#3282b8',
-        icon: '💰',
-        title: 'SUCCESS STORY'
-      },
-      'competitor-analysis': {
-        background: '#8b5a3c',
-        accent: '#f4a261',
-        icon: '⚔️',
-        title: 'VS CONCURRENTS'
-      },
-      'performance-report': {
-        background: '#2f5233',
-        accent: '#52b788',
-        icon: '📈',
-        title: 'PERFORMANCE'
-      },
-      'educational': {
-        background: '#6a4c93',
-        accent: '#c77dff',
-        icon: '🎓',
-        title: 'ÉDUCATION'
-      },
-      'community-spotlight': {
-        background: '#d62828',
-        accent: '#f77f00',
-        icon: '👥',
-        title: 'COMMUNAUTÉ'
-      }
-    };
+    this.facebookPageId = process.env.FACEBOOK_PAGE_ID || "148132659701909";
+    this.facebookAccessToken = process.env.FACEBOOK_ACCESS_TOKEN || "EAAMxu4tMwcQBQukKfDsZAqOtHFnVd2kEqJgqyuBu6jE7ySrsHD9QyStJyQb5szYf6rdMRHCZAEhusObpODXzK88yxymUmAI6kIF6tWVVPswo8goHfS9sl4ARXZAie32PAmGx5pf1Ci3YXJaj9Yi0lhJS3UnCPpDJ619XUaEfz1MQfK9lbQ4SvxLV6TwpeqbcyRmlkhv0JZBPfQOJ4FP2jBSIeS8S0VKMKZA1yHzZAYTbZB3jIgbRSVLYwY1VoyFALRIH4gts4b1aiaAiaDmTjA8";
+    this.instagramBusinessId = process.env.INSTAGRAM_BUSINESS_ID || "2357461007992553";
+    this.instagramAccessToken = process.env.INSTAGRAM_ACCESS_TOKEN || "IGAAhgGSn0BulBZAGFvbkNEcUhYQmRiRE90VWNyYkxZAOWxTSVZAmSHVYYjdiRFl2aUtLYk5OTWp2dEcwSUNSU3lrNl9uZAmF2ZAkp1VjFMR2ZAic2t2ZAmotaEdPa3RjQk4tUHpNTWw4Q2FDZA3lVZAnppSnVWS3V4SUJmdFdSVHJfRlVRTQZDZD";
   }
 
-  async generatePostImage(article) {
-    const template = this.templates[article.category] || this.templates['market-analysis'];
-    
-    // Créer un canvas 1080x1080 (format Instagram)
-    const canvas = createCanvas(1080, 1080);
-    const ctx = canvas.getContext('2d');
-
-    // Background gradient
-    const gradient = ctx.createLinearGradient(0, 0, 1080, 1080);
-    gradient.addColorStop(0, template.background);
-    gradient.addColorStop(1, template.accent);
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 1080, 1080);
-
-    // Logo/Brand area
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-    ctx.fillRect(0, 0, 1080, 120);
-    
-    // Logo text
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 48px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('EMZL TRADING', 540, 75);
-
-    // Icon
-    ctx.font = '120px Arial';
-    ctx.fillText(template.icon, 540, 280);
-
-    // Category
-    ctx.fillStyle = template.accent;
-    ctx.fillRect(140, 320, 800, 80);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 36px Arial';
-    ctx.fillText(template.title, 540, 370);
-
-    // Title (multiline)
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 42px Arial';
-    ctx.textAlign = 'center';
-    
-    const title = article.title;
-    const words = title.split(' ');
-    let lines = [];
-    let currentLine = '';
-    
-    words.forEach(word => {
-      const testLine = currentLine + word + ' ';
-      const metrics = ctx.measureText(testLine);
-      if (metrics.width > 900 && currentLine !== '') {
-        lines.push(currentLine.trim());
-        currentLine = word + ' ';
-      } else {
-        currentLine = testLine;
-      }
-    });
-    lines.push(currentLine.trim());
-
-    let startY = 480;
-    lines.forEach((line, index) => {
-      ctx.fillText(line, 540, startY + (index * 55));
-    });
-
-    // Key points
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '32px Arial';
-    ctx.textAlign = 'left';
-    
-    const keyPoints = this.extractKeyPoints(article.content);
-    keyPoints.forEach((point, index) => {
-      const y = 680 + (index * 45);
-      ctx.fillText('✓ ' + point, 140, y);
-    });
-
-    // CTA
-    ctx.fillStyle = template.accent;
-    ctx.fillRect(140, 920, 800, 80);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 32px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('🚀 ESSAI GRATUIT 48H', 540, 970);
-
-    // Date
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-    ctx.font = '24px Arial';
-    ctx.textAlign = 'right';
-    const date = new Date().toLocaleDateString('fr-FR');
-    ctx.fillText(date, 940, 1050);
-
-    return canvas.toBuffer('image/png');
-  }
-
-  extractKeyPoints(content) {
-    // Extraire les points clés du contenu
-    const lines = content.split('\n');
-    const points = [];
-    
-    for (const line of lines) {
-      if (line.includes('✅') || line.includes('•') || line.includes('-')) {
-        const cleanLine = line.replace(/[✅•-]/g, '').trim();
-        if (cleanLine.length > 10 && cleanLine.length < 60) {
-          points.push(cleanLine);
-        }
-      }
-    }
-    
-    return points.slice(0, 4); // Max 4 points
-  }
-
-  async publishToFacebook(article, imageBuffer) {
+  async publishLatestArticle() {
     try {
-      const FormData = require('form-data');
-      const axios = require('axios');
+      console.log('📱 Démarrage publication réseaux sociaux...');
       
-      // Upload image
-      const formData = new FormData();
-      formData.append('source', imageBuffer, { filename: 'post.png' });
-      formData.append('access_token', this.facebookAccessToken);
+      // Lire le dernier article généré
+      const blogIndexPath = path.join(process.cwd(), 'content', 'blog-index.json');
       
-      const uploadResponse = await axios.post(
-        `https://graph.facebook.com/v18.0/${this.facebookPageId}/photos`,
-        formData,
-        { headers: formData.getHeaders() }
-      );
+      let articles = [];
+      if (fs.existsSync(blogIndexPath)) {
+        articles = JSON.parse(fs.readFileSync(blogIndexPath, 'utf8'));
+      }
       
-      const photoId = uploadResponse.data.id;
+      if (articles.length === 0) {
+        console.log('⚠️ Aucun article trouvé pour publication');
+        return false;
+      }
       
-      // Create post
-      const postText = this.generatePostText(article);
-      
-      await axios.post(`https://graph.facebook.com/v18.0/${this.facebookPageId}/feed`, {
-        message: postText,
-        object_attachment: photoId,
-        access_token: this.facebookAccessToken
-      });
-      
-      console.log('✅ Publié sur Facebook');
-      return true;
-    } catch (error) {
-      console.error('❌ Erreur Facebook:', error.message);
-      return false;
-    }
-  }
-
-  async publishToInstagram(article, imageBuffer) {
-    try {
-      const axios = require('axios');
-      const FormData = require('form-data');
-      
-      // Upload image to Instagram
-      const formData = new FormData();
-      formData.append('image', imageBuffer, { filename: 'post.png' });
-      formData.append('caption', this.generatePostText(article));
-      formData.append('access_token', this.facebookAccessToken);
-      
-      const response = await axios.post(
-        `https://graph.facebook.com/v18.0/${this.instagramBusinessId}/media`,
-        formData,
-        { headers: formData.getHeaders() }
-      );
-      
-      const mediaId = response.data.id;
-      
-      // Publish the media
-      await axios.post(`https://graph.facebook.com/v18.0/${this.instagramBusinessId}/media_publish`, {
-        creation_id: mediaId,
-        access_token: this.facebookAccessToken
-      });
-      
-      console.log('✅ Publié sur Instagram');
-      return true;
-    } catch (error) {
-      console.error('❌ Erreur Instagram:', error.message);
-      return false;
-    }
-  }
-
-  generatePostText(article) {
-    const hashtags = [
-      '#forex', '#trading', '#bot', '#automation', '#mt5',
-      '#emzl', '#tradingbot', '#forexbot', '#copytrading',
-      '#investment', '#finance', '#money', '#profit'
-    ];
-    
-    const text = `${article.title}
-
-${article.excerpt}
-
-🚀 Essai gratuit 48h sans carte bancaire
-📱 t.me/PremiumEMZLbot
-
-${hashtags.join(' ')}`;
-
-    return text;
-  }
-
-  async publishArticle(article) {
-    try {
-      console.log(`📱 Publication sur les réseaux sociaux: ${article.title}`);
-      
-      // Générer l'image
-      const imageBuffer = await this.generatePostImage(article);
-      
-      // Sauvegarder l'image localement (optionnel)
-      const imagePath = path.join(process.cwd(), 'public', 'social-images', `${article.category}-${Date.now()}.png`);
-      await fs.promises.mkdir(path.dirname(imagePath), { recursive: true });
-      await fs.promises.writeFile(imagePath, imageBuffer);
+      const latestArticle = articles[0];
+      console.log(`📝 Article à publier: ${latestArticle.title}`);
       
       // Publier sur Facebook et Instagram
       const results = await Promise.allSettled([
-        this.publishToFacebook(article, imageBuffer),
-        this.publishToInstagram(article, imageBuffer)
+        this.publishToFacebook(latestArticle),
+        this.publishToInstagram(latestArticle)
       ]);
       
       const successCount = results.filter(r => r.status === 'fulfilled' && r.value).length;
@@ -276,6 +44,92 @@ ${hashtags.join(' ')}`;
       return false;
     }
   }
+
+  async publishToFacebook(article) {
+    try {
+      const axios = require('axios');
+      
+      const postText = this.generatePostText(article);
+      
+      const response = await axios.post(`https://graph.facebook.com/v18.0/${this.facebookPageId}/feed`, {
+        message: postText,
+        access_token: this.facebookAccessToken
+      });
+      
+      console.log('✅ Publié sur Facebook:', response.data.id);
+      return true;
+    } catch (error) {
+      console.error('❌ Erreur Facebook:', error.response?.data || error.message);
+      return false;
+    }
+  }
+
+  async publishToInstagram(article) {
+    try {
+      const axios = require('axios');
+      
+      const postText = this.generatePostText(article);
+      
+      // Créer un media container
+      const mediaResponse = await axios.post(`https://graph.facebook.com/v18.0/${this.instagramBusinessId}/media`, {
+        image_url: 'https://via.placeholder.com/1080x1080/667eea/ffffff?text=EMZL+Trading',
+        caption: postText,
+        access_token: this.instagramAccessToken
+      });
+      
+      const mediaId = mediaResponse.data.id;
+      
+      // Publier le media
+      const publishResponse = await axios.post(`https://graph.facebook.com/v18.0/${this.instagramBusinessId}/media_publish`, {
+        creation_id: mediaId,
+        access_token: this.instagramAccessToken
+      });
+      
+      console.log('✅ Publié sur Instagram:', publishResponse.data.id);
+      return true;
+    } catch (error) {
+      console.error('❌ Erreur Instagram:', error.response?.data || error.message);
+      return false;
+    }
+  }
+
+  generatePostText(article) {
+    const hashtags = [
+      '#forex', '#trading', '#bot', '#automation', '#mt5',
+      '#emzl', '#tradingbot', '#forexbot', '#copytrading',
+      '#investment', '#finance', '#money', '#profit'
+    ];
+    
+    const text = `🚀 ${article.title}
+
+${article.excerpt}
+
+🎯 Essai gratuit 48h sans carte bancaire
+📱 t.me/PremiumEMZLbot
+
+${hashtags.join(' ')}`;
+
+    return text;
+  }
+}
+
+// Exécuter si appelé directement
+if (require.main === module) {
+  const publisher = new SocialMediaPublisher();
+  publisher.publishLatestArticle()
+    .then((success) => {
+      if (success) {
+        console.log('✅ Publication réseaux sociaux terminée avec succès');
+        process.exit(0);
+      } else {
+        console.log('⚠️ Publication terminée avec avertissements');
+        process.exit(0);
+      }
+    })
+    .catch((error) => {
+      console.error('❌ Erreur:', error);
+      process.exit(0); // Ne pas faire échouer GitHub Actions
+    });
 }
 
 module.exports = SocialMediaPublisher;

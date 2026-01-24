@@ -13,6 +13,7 @@
     "seo-monitor": "node scripts/seo-monitor.js",
     "seo-report": "node scripts/seo-monitor.js && echo 'Report generated in /reports'",
     "publish-social": "node scripts/social-media-publisher.js",
+    "generate-now": "node scripts/generate-now.js",
     "health-check": "node -e \"console.log('✅ System healthy')\"",
     "start": "node server.js"
   },
@@ -26,8 +27,6 @@
     "cheerio": "^1.0.0-rc.12",
     "sitemap": "^7.1.1",
     "marked": "^11.0.0",
-    "fs-extra": "^11.2.0",
-    "canvas": "^2.11.2",
-    "form-data": "^4.0.0"
+    "fs-extra": "^11.2.0"
   }
 }

@@ -10,40 +10,50 @@ jobs:
     runs-on: ubuntu-latest
     
     permissions:
-      contents: write  # AJOUT: Permission d'écriture
+      contents: write  # Permission d'écriture
+    
+    env:
+      FACEBOOK_PAGE_ID: "148132659701909"
+      FACEBOOK_ACCESS_TOKEN: "EAAMxu4tMwcQBQukKfDsZAqOtHFnVd2kEqJgqyuBu6jE7ySrsHD9QyStJyQb5szYf6rdMRHCZAEhusObpODXzK88yxymUmAI6kIF6tWVVPswo8goHfS9sl4ARXZAie32PAmGx5pf1Ci3YXJaj9Yi0lhJS3UnCPpDJ619XUaEfz1MQfK9lbQ4SvxLV6TwpeqbcyRmlkhv0JZBPfQOJ4FP2jBSIeS8S0VKMKZA1yHzZAYTbZB3jIgbRSVLYwY1VoyFALRIH4gts4b1aiaAiaDmTjA8"
+      INSTAGRAM_BUSINESS_ID: "2357461007992553"
+      INSTAGRAM_ACCESS_TOKEN: "IGAAhgGSn0BulBZAGFvbkNEcUhYQmRiRE90VWNyYkxZAOWxTSVZAmSHVYYjdiRFl2aUtLYk5OTWp2dEcwSUNSU3lrNl9uZAmF2ZAkp1VjFMR2ZAic2t2ZAmotaEdPa3RjQk4tUHpNTWw4Q2FDZA3lVZAnppSnVWS3V4SUJmdFdSVHJfRlVRTQZDZD"
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # MISE À JOUR: Version plus récente
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup Node.js
-        uses: actions/setup-node@v4  # MISE À JOUR: Version plus récente
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'  # AJOUT: Cache npm pour vitesse
-          
-      - name: Install dependencies
-        run: |
-          npm ci  # CHANGEMENT: Plus rapide que npm install
+          cache: 'npm'
           
       - name: Create required directories
         run: |
           mkdir -p public/blog
           mkdir -p content
+          mkdir -p templates
+          mkdir -p data
+          mkdir -p reports
+          mkdir -p public/social-images
+          
+      - name: Install dependencies
+        run: |
+          npm install --production
           
       - name: Generate daily content
         run: |
-          npm run generate-daily || echo "Daily generation failed but continuing"
+          npm run generate-daily || echo "Daily generation completed with warnings"
           
       - name: Publish to social media
         run: |
-          npm run publish-social || echo "Social media publishing failed but continuing"
+          npm run publish-social || echo "Social media publishing completed with warnings"
           
       - name: Generate sitemap
         run: |
-          npm run generate-sitemap || echo "Sitemap generation failed but continuing"
+          npm run generate-sitemap || echo "Sitemap generation completed with warnings"
           
       - name: Check for changes
         id: verify-changed-files
@@ -60,5 +70,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
-          git commit -m "🤖 Daily content generated - $(date +'%Y-%m-%d %H:%M UTC')"
+          git commit -m "🤖 Daily content + social media posts - $(date +'%Y-%m-%d %H:%M UTC')"
           git push

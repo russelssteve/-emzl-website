@@ -41,7 +41,7 @@ jobs:
           
       - name: Install dependencies
         run: |
-          npm install --production
+          npm install --no-package-lock
           
       - name: Generate daily content
         run: |

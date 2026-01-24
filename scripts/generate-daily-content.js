@@ -17,7 +17,8 @@ class DailyContentGenerator {
 
   async generate() {
     try {
-      const today = new Date().toLocaleDateString('en-US', { weekday: 'lowercase' });
+      const today = new Date().toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+
       const contentType = this.contentTypes[today] || 'market-analysis';
       
       console.log(`📅 Génération du contenu quotidien: ${contentType}`);

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russels Trading - Système Automatisé Bot + Copy Trading + EA MT5</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e27;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #a0aec0;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* System Overview */
+        .system-overview {
+            padding: 100px 0;
+            background: #0f1329;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 60px;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+        
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .card p {
+            color: #a0aec0;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .card ul li {
+            padding: 8px 0;
+            color: #cbd5e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card ul li::before {
+            content: '✓';
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        /* Features Grid */
+        .features {
+            padding: 100px 0;
+            background: #0a0e27;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+        }
+        
+        .feature-item h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .feature-item p {
+            color: #a0aec0;
+            line-height: 1.6;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: #0f1329;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card.popular {
+            border: 2px solid #667eea;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.popular::before {
+            content: 'LE PLUS POPULAIRE';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .plan-price {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .plan-price span {
+            font-size: 20px;
+            color: #a0aec0;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .plan-features li {
+            padding: 12px 0;
+            color: #cbd5e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .plan-features li::before {
+            content: '✓';
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: #0a0e27;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+        
+        .step h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .step p {
+            color: #a0aec0;
+            line-height: 1.8;
+        }
+        
+        .commands {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 60px;
+        }
+        
+        .commands h4 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .command-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .command-item code {
+            color: #48bb78;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .command-item p {
+            color: #a0aec0;
+            font-size: 14px;
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 100px 0;
+            background: #0f1329;
+        }
+        
+        .contact-content {
+            max-width: 600px;
+            margin: 60px auto 0;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #cbd5e0;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a0e27;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        footer p {
+            color: #a0aec0;
+        }
+        
+        /* Trial Banner */
+        .trial-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            text-align: center;
+            margin: 100px 0;
+        }
+        
+        .trial-banner h3 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .trial-banner p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Russels Trading</div>
+                <ul class="nav-links">
+                    <li><a href="#system">Système</a></li>
+                    <li><a href="#features">Avantages</a></li>
+                    <li><a href="#pricing">Tarifs</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Système de Trading Automatisé<br><span class="gradient-text">Nouvelle Génération</span></h1>
+            <p>Bot Telegram + Copy Trading Universel + EA MT5 Premium. Tout-en-un pour automatiser votre trading 24/7 avec notifications en temps réel.</p>
+            <div class="cta-buttons">
+                <a href="https://t.me/PremiumEMZLbot" class="btn btn-primary" target="_blank">🚀 Essai Gratuit 48h</a>
+                <a href="#system" class="btn btn-secondary">📖 Découvrir le Système</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Overview -->
+    <section id="system" class="system-overview">
+        <div class="container">
+            <h2 class="section-title">3 Composants Puissants</h2>
+            <div class="cards-grid">
+                <!-- Bot Telegram -->
+                <div class="card">
+                    <div class="card-icon">🤖</div>
+                    <h3>Bot Telegram</h3>
+                    <p>Interface complète pour gérer vos abonnements, configurer vos comptes et recevoir des notifications en temps réel.</p>
+                    <ul>
+                        <li>Interface bilingue (FR/EN)</li>
+                        <li>Essai gratuit 48h</li>
+                        <li>Paiements intégrés</li>
+                        <li>Notifications instantanées</li>
+                        <li>Configuration simplifiée</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn btn-primary" target="_blank">Accéder au Bot</a>
+                </div>
+
+                <!-- Copy Trading -->
+                <div class="card">
+                    <span class="badge">Le Plus Populaire</span>
+                    <div class="card-icon">🔄</div>
+                    <h3>Copy Trading Universel</h3>
+                    <p>Copiez automatiquement les trades du compte master vers vos comptes clients. Support API et VPS.</p>
+                    <ul>
+                        <li>API REST (OANDA, FXCM, Saxo, IB)</li>
+                        <li>VPS Multi-MT5 (tous brokers)</li>
+                        <li>1 trade par symbole par client</li>
+                        <li>Gestion automatique du risque</li>
+                        <li>Notifications Telegram</li>
+                    </ul>
+                </div>
+
+                <!-- EA MT5 -->
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>EA MT5 Premium</h3>
+                    <p>Expert Advisor avec stratégie IFVG, Pivots Essomba et Market Structure pour des entrées optimales.</p>
+                    <ul>
+                        <li>Stratégie IFVG avancée</li>
+                        <li>Pivots Essomba exclusifs</li>
+                        <li>Market Structure MTF</li>
+                        <li>Protection 1 trade actif</li>
+                        <li>Notifications Telegram</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Pourquoi Choisir Russels Trading ?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Sécurité Maximale</h4>
+                    <p>Chiffrement des mots de passe, protection anti-doublons, gestion sécurisée des données.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌍</div>
+                    <h4>Support Universel</h4>
+                    <p>Compatible avec TOUS les brokers MT5 via VPS ou API REST (OANDA, FXCM, etc.).</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <h4>Notifications Temps Réel</h4>
+                    <p>Recevez chaque trade, signal et événement directement sur Telegram.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Stratégies Avancées</h4>
+                    <p>IFVG, Pivots Essomba, Market Structure - Stratégies testées et optimisées.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Configuration Simple</h4>
+                    <p>Commandes simples via Telegram : /set_api ou /set_vps et c'est parti !</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌙</div>
+                    <h4>Trading 24/7</h4>
+                    <p>Le système fonctionne en continu, même quand vous dormez.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Plans & Tarifs</h2>
+            <div class="pricing-grid">
+                <!-- Basic -->
+                <div class="pricing-card">
+                    <div class="plan-name">Basic</div>
+                    <div class="plan-price">100$ <span>/mois</span></div>
+                    <ul class="plan-features">
+                        <li>Bot Telegram complet</li>
+                        <li>Copy Trading actif</li>
+                        <li>EA MT5 inclus</li>
+                        <li>Max 1 lot par trade</li>
+                        <li>Notifications Telegram</li>
+                        <li>Support email</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn btn-primary" target="_blank">Commencer</a>
+                </div>
+
+                <!-- Pro -->
+                <div class="pricing-card popular">
+                    <div class="plan-name">Pro</div>
+                    <div class="plan-price">200$ <span>/mois</span></div>
+                    <ul class="plan-features">
+                        <li>Tout du Basic</li>
+                        <li>Max 5 lots par trade</li>
+                        <li>Risk multiplier personnalisé</li>
+                        <li>Support prioritaire</li>
+                        <li>Analyses quotidiennes</li>
+                        <li>Accès groupe VIP</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn btn-primary" target="_blank">Commencer</a>
+                </div>
+
+                <!-- VIP -->
+                <div class="pricing-card">
+                    <div class="plan-name">VIP</div>
+                    <div class="plan-price">500$ <span>/mois</span></div>
+                    <ul class="plan-features">
+                        <li>Tout du Pro</li>
+                        <li>Lots illimités</li>
+                        <li>Support 24/7</li>
+                        <li>Signaux exclusifs</li>
+                        <li>Configuration personnalisée</li>
+                        <li>Accès anticipé nouvelles features</li>
+                    </ul>
+                    <a href="https://t.me/PremiumEMZLbot" class="btn btn-primary" target="_blank">Commencer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trial Banner -->
+    <div class="trial-banner">
+        <div class="container">
+            <h3>🎁 Essai Gratuit 48h</h3>
+            <p>Testez le système complet pendant 48 heures sans carte bancaire</p>
+            <a href="https://t.me/PremiumEMZLbot" class="btn btn-secondary" target="_blank">Démarrer l'essai gratuit</a>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Comment Ça Marche ?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Démarrer sur Telegram</h4>
+                    <p>Envoyez /start au bot Telegram et activez votre essai gratuit 48h</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Configurer Votre Compte</h4>
+                    <p>Utilisez /set_api pour API (gratuit) ou /set_vps pour MT5 (tous brokers)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Laisser Travailler</h4>
+                    <p>Le système copie automatiquement les trades 24/7 avec notifications</p>
+                </div>
+            </div>
+
+            <div class="commands">
+                <h4>Commandes Rapides</h4>
+                <div class="command-item">
+                    <code>/set_api OANDA votre_api_key votre_account_id</code>
+                    <p>Configuration API (GRATUIT - Pas de VPS)</p>
+                </div>
+                <div class="command-item">
+                    <code>/set_vps LOGIN PASSWORD SERVEUR "Broker"</code>
+                    <p>Configuration VPS (Tous brokers MT5)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-Nous</h2>
+            <div class="contact-content">
+                <form name="contact" method="POST" data-netlify="true" action="/thank-you">
+                    <input type="hidden" name="form-name" value="contact">
+                    
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Russels Trading - Système Automatisé Bot + Copy Trading + EA MT5</p>
+            <p style="margin-top: 10px;">Support: <a href="https://t.me/SteveRussels" style="color: #667eea;">@SteveRussels</a></p>
+        </div>
+    </footer>
+</body>
+</html>

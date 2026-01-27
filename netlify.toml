@@ -1,0 +1,58 @@
+[build]
+  publish = "public"
+  command = "npm run build"
+  
+[build.environment]
+  NODE_VERSION = "18"
+  BASE_URL = "https://emzl-trading.netlify.app"
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/blog/:splat"
+  status = 200
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+    
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Déploiement rapide pour les publications sociales
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# Variables d'environnement pour les réseaux sociaux
+[context.production.environment]
+  FB_PAGE_ACCESS_TOKEN = "YOUR_FB_TOKEN"
+  FB_PAGE_ID = "YOUR_FB_PAGE_ID"
+  IG_ACCESS_TOKEN = "YOUR_IG_TOKEN"
+  IG_USER_ID = "YOUR_IG_USER_ID"
+  BASE_URL = "https://emzl-trading.netlify.app"
+
+# Configuration des formulaires
+[forms]
+  # Notification par email pour le formulaire de support
+  [forms.support-contact]
+    to = "russelsessomba@gmail.com"
+    subject = "Nouveau message de support - EMZL Trading"
+    template = "Nouveau message de support reçu:\n\nNom: {{ name }}\nEmail: {{ email }}\nTéléphone: {{ phone }}\nProduit: {{ product }}\nSujet: {{ subject }}\nPriorité: {{ priority }}\n\nMessage:\n{{ message }}"

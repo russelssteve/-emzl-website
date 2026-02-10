@@ -10,10 +10,10 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 
 # Configuration depuis variables d'environnement
-FB_PAGE_ACCESS_TOKEN = os.getenv('FB_PAGE_ACCESS_TOKEN', '')
-FB_PAGE_ID = os.getenv('FB_PAGE_ID', '')
-IG_ACCESS_TOKEN = os.getenv('IG_ACCESS_TOKEN', '')
-IG_USER_ID = os.getenv('IG_USER_ID', '')
+FB_PAGE_ACCESS_TOKEN = os.getenv('FB_PAGE_ACCESS_TOKEN', 'EAALZCxqZBZBZBwBO4bvZCZCqZBZBZBwBO4bvZCZCqZBZBZBwBO4bv')
+FB_PAGE_ID = os.getenv('FB_PAGE_ID', '123456789')
+IG_ACCESS_TOKEN = os.getenv('IG_ACCESS_TOKEN', 'IGQVJYZAzZAzZAzZAzZAzZAzZAzZAzZAzZAzZAzZAz')
+IG_USER_ID = os.getenv('IG_USER_ID', '987654321')
 BASE_URL = os.getenv('BASE_URL', 'https://emzl-trading.netlify.app')
 
 BLOG_DIR = Path(__file__).parent / 'public' / 'blog'

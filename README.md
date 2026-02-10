@@ -1,144 +1,119 @@
-# 🚀 EMZL Trading Solutions - Site Web Officiel
+# 🤖 Balt Bot IA - Site Web
 
-Site web officiel pour EMZL Trading Solutions, présentant nos robots de trading et indicateurs techniques premium.
+Site web officiel de Balt Bot IA - Trading automatique intelligent avec XM
 
-## 🌐 Site en Ligne
+## 🌐 Site Déployé
 
-**URL**: [À configurer après déploiement Netlify]
+**URL**: https://emzl-trading.netlify.app
 
-## 📦 Contenu
-
-### Produits Présentés
-
-#### Robots de Trading
-- **IFVG Smart Robot EMZL** - Robot de trading automatisé avec stratégie IFVG et IA
-- **Essomba Money Cash Bot** - Bot crypto avec arbitrage et scalping
-- **Sandwich Secure Bot** - Bot ultra pro pour Arbitrum avec IA
-
-#### Indicateurs Techniques
-- **Essomba Pivot** - Niveaux de pivot avancés avec Fibonacci
-- **Inversion Fair Value Gaps (IFVG)** - Détection des FVG avec signaux d'inversion
-- **Market Energy EMZL** - Analyse volumétrique et forces du marché
-
-## 🛠️ Technologies
-
-- HTML5
-- CSS3 (Design moderne et responsive)
-- JavaScript (Vanilla)
-- Netlify (Hébergement et formulaires)
-
-## 📋 Fonctionnalités
-
-✅ Design moderne et professionnel
-✅ Responsive (mobile, tablette, desktop)
-✅ Formulaire de contact avec notification email
-✅ Bannière promo avec countdown
-✅ Liens directs vers Telegram et Gumroad
-✅ Section témoignages
-✅ Intégration réseaux sociaux
-
-## 🚀 Déploiement sur Netlify
-
-### Méthode Automatique (Recommandée)
-
-1. **Connectez-vous à Netlify**: https://app.netlify.com/
-2. **Cliquez sur**: "Add new site" > "Import an existing project"
-3. **Sélectionnez**: GitHub
-4. **Choisissez**: russelssteve/-emzl-website
-5. **Netlify détectera automatiquement** le fichier `netlify.toml`
-6. **Cliquez sur**: "Deploy site"
-
-### Configuration Netlify
-
-Le fichier `netlify.toml` est déjà configuré avec:
-- Build settings
-- Formulaire de contact avec notification email
-- Redirections SPA
-
-### Formulaire de Contact
-
-Le formulaire envoie automatiquement un email à: `russelsessomba@gmail.com`
-
-Champs du formulaire:
-- Nom complet
-- Email
-- Téléphone (optionnel)
-- Produit concerné
-- Sujet
-- Message
-- Priorité
-
-## 📞 Support
-
-- **Telegram**: @SteveRussels
-- **Groupe**: https://t.me/+QEqmFwQge6cxMzM0
-- **YouTube**: https://www.youtube.com/@EssombaBotLiquidityforAll
-- **Email**: russelsessomba@gmail.com
-
-## 📝 Licence
-
-© 2024 EMZL Trading Solutions - Tous droits réservés
-Développé par ESSOMBA Steve Russels
-
-## 🔄 Mises à Jour
-
-Pour mettre à jour le site:
-
-1. Modifiez les fichiers localement
-2. Exécutez le script: `DEPLOY_SITE_GITHUB.ps1`
-3. Netlify redéploiera automatiquement
-
-## 📊 Structure des Fichiers
+## 📁 Structure
 
 ```
--emzl-website/
-├── index.html          # Page principale
-├── styles.css          # Styles CSS
-├── script.js           # Scripts JavaScript
-├── netlify.toml        # Configuration Netlify
-├── thank-you.html      # Page de remerciement
-└── README.md           # Ce fichier
+-emzl-website-main/
+├── index.html              # Page d'accueil
+├── styles.css              # Styles
+├── script.js               # Scripts
+├── public/
+│   └── blog/
+│       ├── index.html      # Index du blog
+│       └── *.html          # Articles (5)
+├── publish_social.py       # Publication Facebook/Instagram
+├── .env.social             # Configuration tokens
+└── README_PUBLICATION_SOCIALE.md  # Documentation
 ```
 
-## 🎨 Personnalisation
+## 🚀 Déploiement
 
-### Modifier les Prix
+### Automatique (Netlify)
+Chaque push sur `main` déclenche un déploiement automatique.
 
-Éditez `index.html` et cherchez les sections `.pricing`
+### Manuel
+```bash
+git add .
+git commit -m "Mise à jour"
+git push origin main
+```
 
-### Modifier les Couleurs
+## 📱 Publication Sociale
 
-Éditez `styles.css` et modifiez les variables CSS en haut du fichier
+### Configuration
 
-### Modifier le Countdown
+1. **Obtenir les tokens**:
+   - Facebook: https://developers.facebook.com/
+   - Instagram: Compte Business requis
 
-Éditez `script.js` et modifiez la fonction `updateCountdown()`
+2. **Éditer `.env.social`**:
+   ```bash
+   FB_PAGE_ACCESS_TOKEN=votre_token
+   FB_PAGE_ID=votre_page_id
+   IG_ACCESS_TOKEN=votre_token
+   IG_USER_ID=votre_user_id
+   ```
+
+3. **Publier**:
+   ```bash
+   export $(cat .env.social | xargs)
+   python publish_social.py
+   ```
+
+### Automatisation
+
+**Option 1: Cron (Serveur)**
+```bash
+# Tous les jours à 9h
+0 9 * * * cd /path/to/site && export $(cat .env.social | xargs) && python publish_social.py
+```
+
+**Option 2: GitHub Actions**
+Voir `README_PUBLICATION_SOCIALE.md` pour la configuration complète.
+
+## 📝 Blog
+
+### Articles Existants
+1. Les meilleurs moments pour trader avec Balt Bot IA
+2. XM vs autres brokers
+3. Comment le trading automatique IA révolutionne le forex
+4. Gestion du risque avec l'intelligence artificielle
+5. Stratégies de trading IA: IFVG, MSP et Pivots expliqués
+
+### Ajouter un Article
+
+1. Créer `public/blog/nouvel-article.html`
+2. Utiliser la structure des articles existants
+3. Ajouter le lien dans `public/blog/index.html`
+4. Publier sur les réseaux sociaux
 
 ## 🔗 Liens Importants
 
-- **Bot Telegram Premium**: https://t.me/PremiumEMZLbot
-- **Gumroad Store**: https://essombabot.gumroad.com/
-- **Code Promo**: `xrhdl6i` (70% de réduction)
+- **Bot Telegram**: https://t.me/PremiumEMZLbot
+- **Dashboard**: https://emzl-premium-production.up.railway.app
+- **XM Inscription**: https://affs.click/4fFDW
+- **XM App**: https://affs.click/PiKQK
+- **Paiement**: https://moneyfusion.net/dashboard/link?page=1&limit=20
 
-## ✅ Checklist de Déploiement
+## 📞 Support
 
-- [x] Fichiers HTML/CSS/JS créés
-- [x] Configuration Netlify (netlify.toml)
-- [x] Formulaire de contact configuré
-- [x] Liens de produits vérifiés
-- [x] Design responsive testé
-- [ ] Déployé sur Netlify
-- [ ] Domaine personnalisé configuré (optionnel)
-- [ ] SSL activé (automatique avec Netlify)
+**Telegram**: @SteveRussels
+**Email**: russelsessomba@gmail.com
 
-## 🎯 Prochaines Étapes
+## ✅ Checklist
 
-1. ✅ Pousser le code sur GitHub
-2. ⏳ Connecter à Netlify
-3. ⏳ Vérifier le déploiement
-4. ⏳ Tester le formulaire de contact
-5. ⏳ Configurer un domaine personnalisé (optionnel)
+- [x] Site déployé sur Netlify
+- [x] Blog fonctionnel avec 5 articles
+- [x] Liens XM configurés
+- [x] Formulaire contact opérationnel
+- [x] Script publication sociale créé
+- [ ] Tokens Facebook/Instagram configurés
+- [ ] Publication automatique activée
+
+## 📊 Statistiques
+
+- **Pages**: 6 (accueil + 5 articles)
+- **Déploiement**: Automatique via Netlify
+- **Performance**: Optimisé pour mobile
+- **SEO**: Meta tags configurés
 
 ---
 
-**Développé avec ❤️ par ESSOMBA Steve Russels**
+**Version**: 1.0.0
+**Dernière mise à jour**: 2024-01-15

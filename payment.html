@@ -28,38 +28,35 @@
             <div class="pricing-card">
                 <div class="plan-name">Abonnement Mensuel</div>
                 <div class="plan-price">100$</div>
-                <button class="btn" onclick="openKkiapayWidget(100, 'monthly')">Payer 100$</button>
+                <button class="btn" 
+                    data-amount="100" 
+                    data-key="470626913ee3f8b22433ab69fc2ff95fcd71308f"
+                    data-sandbox="false"
+                    data-callback="https://baltbotia.netlify.app/payment-success.html">Payer 100$</button>
             </div>
             
             <div class="pricing-card">
                 <div class="plan-name">Licence 6 Mois</div>
                 <div class="plan-price">1000$</div>
-                <button class="btn" onclick="openKkiapayWidget(1000, 'lifetime')">Payer 1000$</button>
+                <button class="btn" 
+                    data-amount="1000" 
+                    data-key="470626913ee3f8b22433ab69fc2ff95fcd71308f"
+                    data-sandbox="false"
+                    data-callback="https://baltbotia.netlify.app/payment-success.html">Payer 1000$</button>
             </div>
         </div>
     </div>
 
     <script>
-        function openKkiapayWidget(amount, type) {
-            openKkiapayWidget({
-                amount: amount,
-                position: "center",
-                callback: "https://baltbotia.netlify.app/payment-success",
-                data: type,
-                theme: "#667eea",
-                key: "470626913ee3f8b22433ab69fc2ff95fcd71308f"
-            });
-        }
-        
-        addSuccessListener(function(response) {
+        kkiapay.onSuccess = function(response) {
             console.log("Paiement réussi:", response);
             window.location.href = "/payment-success.html?transaction=" + response.transactionId;
-        });
+        };
         
-        addFailedListener(function(response) {
+        kkiapay.onFailed = function(response) {
             console.log("Paiement échoué:", response);
             alert("Le paiement a échoué. Veuillez réessayer.");
-        });
+        };
     </script>
 </body>
 </html>

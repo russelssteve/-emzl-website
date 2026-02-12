@@ -43,20 +43,21 @@
         function pay(amount, type) {
             openKkiapayWidget({
                 amount: amount,
-                api_key: "470626913ee3f8b22433ab69fc2ff95fcd71308f",
+                key: "470626913ee3f8b22433ab69fc2ff95fcd71308f",
                 sandbox: false,
-                phone: "",
-                name: "Balt Bot IA - " + type,
+                callback: "https://baltbotia.netlify.app/payment-success.html",
                 data: type,
-                callback: "https://baltbotia.netlify.app/payment-success.html"
+                theme: "#667eea"
             });
         }
         
         addSuccessListener(function(response) {
+            console.log("Paiement réussi:", response);
             window.location.href = "/payment-success.html?transaction=" + response.transactionId;
         });
         
         addFailedListener(function(response) {
+            console.log("Paiement échoué:", response);
             alert("Le paiement a échoué. Veuillez réessayer.");
         });
     </script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement - Balt Bot IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.kkiapay.me/k.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0e27; color: #fff; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        h1 { font-size: 42px; text-align: center; margin-bottom: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .pricing-card { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 40px; text-align: center; }
+        .plan-name { font-size: 24px; font-weight: 700; margin-bottom: 15px; }
+        .plan-price { font-size: 48px; font-weight: 800; margin-bottom: 30px; }
+        .btn { padding: 16px 40px; border-radius: 12px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; width: 100%; transition: all 0.3s; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💳 Paiement Sécurisé</h1>
+        <p style="text-align: center; color: #a0aec0; margin-bottom: 40px;">Choisissez votre plan et payez en toute sécurité avec KKiaPay</p>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Abonnement Mensuel</div>
+                <div class="plan-price">100$</div>
+                <button class="btn" onclick="openKkiapayWidget(100, 'monthly')">Payer 100$</button>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="plan-name">Licence 6 Mois</div>
+                <div class="plan-price">1000$</div>
+                <button class="btn" onclick="openKkiapayWidget(1000, 'lifetime')">Payer 1000$</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openKkiapayWidget(amount, type) {
+            openKkiapayWidget({
+                amount: amount,
+                position: "center",
+                callback: "https://baltbotia.netlify.app/payment-success",
+                data: type,
+                theme: "#667eea",
+                key: "470626913ee3f8b22433ab69fc2ff95fcd71308f"
+            });
+        }
+        
+        addSuccessListener(function(response) {
+            console.log("Paiement réussi:", response);
+            window.location.href = "/payment-success.html?transaction=" + response.transactionId;
+        });
+        
+        addFailedListener(function(response) {
+            console.log("Paiement échoué:", response);
+            alert("Le paiement a échoué. Veuillez réessayer.");
+        });
+    </script>
+</body>
+</html>

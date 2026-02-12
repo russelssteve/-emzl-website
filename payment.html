@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paiement - Balt Bot IA</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.kkiapay.me/k.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: #0a0e27; color: #fff; line-height: 1.6; }
@@ -17,6 +16,7 @@
         .plan-price { font-size: 48px; font-weight: 800; margin-bottom: 30px; }
         .btn { padding: 16px 40px; border-radius: 12px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; width: 100%; transition: all 0.3s; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6); }
+        .kkiapay-button { padding: 16px 40px; border-radius: 12px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; width: 100%; transition: all 0.3s; }
     </style>
 </head>
 <body>
@@ -28,35 +28,31 @@
             <div class="pricing-card">
                 <div class="plan-name">Abonnement Mensuel</div>
                 <div class="plan-price">100$</div>
-                <button class="btn" 
-                    data-amount="100" 
-                    data-key="470626913ee3f8b22433ab69fc2ff95fcd71308f"
-                    data-sandbox="false"
-                    data-callback="https://baltbotia.netlify.app/payment-success.html">Payer 100$</button>
+                <kkiapay-widget 
+                    amount="100" 
+                    key="470626913ee3f8b22433ab69fc2ff95fcd71308f"
+                    sandbox="false"
+                    callback="https://baltbotia.netlify.app/payment-success.html"
+                    data="monthly"
+                    theme="#667eea">
+                </kkiapay-widget>
             </div>
             
             <div class="pricing-card">
                 <div class="plan-name">Licence 6 Mois</div>
                 <div class="plan-price">1000$</div>
-                <button class="btn" 
-                    data-amount="1000" 
-                    data-key="470626913ee3f8b22433ab69fc2ff95fcd71308f"
-                    data-sandbox="false"
-                    data-callback="https://baltbotia.netlify.app/payment-success.html">Payer 1000$</button>
+                <kkiapay-widget 
+                    amount="1000" 
+                    key="470626913ee3f8b22433ab69fc2ff95fcd71308f"
+                    sandbox="false"
+                    callback="https://baltbotia.netlify.app/payment-success.html"
+                    data="lifetime"
+                    theme="#667eea">
+                </kkiapay-widget>
             </div>
         </div>
     </div>
 
-    <script>
-        kkiapay.onSuccess = function(response) {
-            console.log("Paiement réussi:", response);
-            window.location.href = "/payment-success.html?transaction=" + response.transactionId;
-        };
-        
-        kkiapay.onFailed = function(response) {
-            console.log("Paiement échoué:", response);
-            alert("Le paiement a échoué. Veuillez réessayer.");
-        };
-    </script>
+    <script src="https://cdn.kkiapay.me/k.js"></script>
 </body>
 </html>
